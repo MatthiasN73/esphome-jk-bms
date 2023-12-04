@@ -14,6 +14,8 @@ class JkModbus : public uart::UARTDevice, public Component {
 
   void loop() override;
 
+  void setup() override;
+
   void dump_config() override;
 
   void register_device(JkModbusDevice *device) { this->devices_.push_back(device); }

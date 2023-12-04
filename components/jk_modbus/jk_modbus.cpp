@@ -17,6 +17,10 @@ static const uint8_t ADDRESS_READ_ALL = 0x00;
 
 static const uint8_t FRAME_SOURCE_GPS = 0x02;
 
+void JkModbus::setup() {
+
+}
+
 void JkModbus::loop() {
   const uint32_t now = millis();
   if (now - this->last_jk_modbus_byte_ > this->rx_timeout_) {
