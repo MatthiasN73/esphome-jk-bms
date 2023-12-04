@@ -194,8 +194,12 @@ void JkModbus::read_registers() {
   frame[19] = crc >> 8;
   frame[20] = crc >> 0;
 
+  digitalWrite(PIN_LED_BLUE, HIGH);
+
   this->write_array(frame, 21);
   this->flush();
+  
+  digitalWrite(PIN_LED_BLUE, LOW);
 }
 
 }  // namespace jk_modbus
