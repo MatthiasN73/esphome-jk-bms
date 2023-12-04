@@ -1,3 +1,4 @@
+#include "esphome.h"
 #include "jk_modbus.h"
 #include "esphome/core/log.h"
 #include "esphome/core/hal.h"
