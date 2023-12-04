@@ -17,8 +17,15 @@ static const uint8_t ADDRESS_READ_ALL = 0x00;
 
 static const uint8_t FRAME_SOURCE_GPS = 0x02;
 
-void JkModbus::setup() {
+static const uint8_t PIN_LED_RED = 4;
+static const uint8_t PIN_LED_BLUE = 5;
 
+void JkModbus::setup() {
+	pinMode(PIN_LED_RED, OUTPUT);
+	pinMode(PIN_LED_BLUE, OUTPUT);
+	
+	digitalWrite(PIN_LED_RED, LOW);
+	digitalWrite(PIN_LED_BLUE, LOW);
 }
 
 void JkModbus::loop() {
