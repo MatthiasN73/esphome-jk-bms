@@ -131,6 +131,8 @@ float JkModbus::get_setup_priority() const {
 }
 
 void JkModbus::send(uint8_t function, uint8_t address, uint8_t value) {
+  digitalWrite(PIN_LED_BLUE, HIGH);
+  
   uint8_t frame[22];
   frame[0] = 0x4E;      // start sequence
   frame[1] = 0x57;      // start sequence
@@ -158,6 +160,8 @@ void JkModbus::send(uint8_t function, uint8_t address, uint8_t value) {
 
   this->write_array(frame, 22);
   this->flush();
+
+  digitalWrite(PIN_LED_BLUE, LOW);
 }
 
 void JkModbus::authenticate_() { this->send(FUNCTION_PASSWORD, 0x00, 0x00); }
@@ -169,6 +173,8 @@ void JkModbus::write_register(uint8_t address, uint8_t value) {
 }
 
 void JkModbus::read_registers() {
+  digitalWrite(PIN_LED_BLUE, HIGH);
+
   uint8_t frame[21];
   frame[0] = 0x4E;                         // start sequence
   frame[1] = 0x57;                         // start sequence
@@ -193,8 +199,6 @@ void JkModbus::read_registers() {
   frame[18] = 0x00;  // crc unused
   frame[19] = crc >> 8;
   frame[20] = crc >> 0;
-
-  digitalWrite(PIN_LED_BLUE, HIGH);
 
   this->write_array(frame, 21);
   this->flush();
